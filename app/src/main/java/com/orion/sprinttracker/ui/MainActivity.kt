@@ -1,7 +1,8 @@
-package com.orion.sprinttracker
+package com.orion.sprinttracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.orion.sprinttracker.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
