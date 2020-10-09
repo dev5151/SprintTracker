@@ -3,8 +3,9 @@ package com.orion.sprinttracker.repository
 import androidx.lifecycle.LiveData
 import com.orion.sprinttracker.data.Run
 import com.orion.sprinttracker.data.RunDao
+import javax.inject.Inject
 
-class RunRepository(private val runDao: RunDao) {
+class RunRepository @Inject constructor(private val runDao: RunDao) {
 
     suspend fun insertRun(run: Run) = runDao.insertRun(run)
 
