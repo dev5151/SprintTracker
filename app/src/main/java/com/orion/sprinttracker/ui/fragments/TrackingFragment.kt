@@ -3,11 +3,8 @@ package com.orion.sprinttracker.ui.fragments
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -156,11 +153,11 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             moveCameraToUser()
         })
 
-        /* TrackingService.timeRunInMillis.observe(viewLifecycleOwner, Observer {
+         TrackingService.timeRunInMillis.observe(viewLifecycleOwner, Observer {
              curTimeInMillis = it
              val formattedTime = MainUtility.getFormattedStopWatchTime(it, true)
              tvTimer.text = formattedTime
-         })*/
+         })
     }
 
     /**
@@ -175,6 +172,31 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             Timber.d("Started/Resumed service")
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.miCancelTracking -> {
+               // showCancelTrackingDialog()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.toolbar_tracking_menu, menu)
+        this.menu = menu
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        // just checking for isTracking doesn't trigger this when rotating the device
+        // in paused mode
+        if (curTimeInMillis > 0L) {
+            this.menu?.getItem(0)?.isVisible = true
+        }
+    }
+
 
 
     override fun onResume() {

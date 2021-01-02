@@ -29,6 +29,9 @@ class Constants {
         const val LOCATION_UPDATE_INTERVAL = 5000L
         const val FASTEST_LOCATION_UPDATE_INTERVAL = 2000L
 
+        // Timer
+        const val TIMER_UPDATE_INTERVAL = 50L
+
         // Notifications
         const val NOTIFICATION_CHANNEL_ID = "tracking_channel"
         const val NOTIFICATION_CHANNEL_NAME = "Tracking"
